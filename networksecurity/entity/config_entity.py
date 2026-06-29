@@ -51,13 +51,33 @@ class DataIngestionConfig:
         self.collection_name = training_pipeline.DATA_INGESTION_COLLECTION_NAME
         self.database_name = training_pipeline.DATA_INGESTION_DATABASE_NAME
 
-if __name__ == "__main__":
-    training_pipeline_config = TrainingPipelineConfig()
-    data_ingestion_config = DataIngestionConfig(training_pipeline_config)
+class DataValidationConfig:
+    def __init__(self, training_pipelineconfig: TrainingPipelineConfig):
+        # Root: Artifacts/timestamp/data_validation
+        self.data_validation_dir = os.path.join(
+            training_pipelineconfig.artifact_dir,
+            training_pipeline.DATA_VALIDATION_DIR_NAME
+        )
 
-    print(data_ingestion_config.data_ingestion_dir)
-    print(data_ingestion_config.feature_store_file_path)
-    print(data_ingestion_config.training_file_path)
-    print(data_ingestion_config.testing_file_path)
-    print(data_ingestion_config.train_test_split_ratio)
-    print(data_ingestion_config.collection_name)
+        # Valid data paths
+        self.valid_data_dir = os.path.join(
+            self.data_validation_dir,
+            training_pipeline.DATA_VALIDATION_VALID_DIR
+        )
+        self.invalid_data_dir = os.path.join(
+            self.data_validation_dir,
+            training_pipeline.DATA_VALIDATION_INVALID_DIR
+        )
+
+        self.valid_train_file_path = os.path.join(self.valid_data_dir,training_pipeline.TRAIN_FILE_NAME)
+        self.valid_test_file_path = os.path.join(self.valid_data_dir,training_pipeline.TEST_FILE_NAME)
+
+        self.invalid_train_file_path = os.path.join(self.invalid_data_dir, training_pipeline.TRAIN_FILE_NAME)
+        self.invalid_test_file_path  = os.path.join(self.invalid_data_dir, training_pipeline.TEST_FILE_NAME)
+
+        # Drift report path
+        self.drift_report_file_path = os.path.join(
+            self.data_validation_dir,
+            training_pipeline.DATA_VALIDATION_DRIFT_REPORT_DIR,
+            training_pipeline.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME
+        )

@@ -1,6 +1,7 @@
 import os
 import sys
 import pymongo
+import certifi
 import pandas as pd
 import numpy as np
 from typing import List
@@ -29,7 +30,7 @@ class DataIngestion:
             database_name = self.data_ingestion_config.database_name
             collection_name = self.data_ingestion_config.collection_name
 
-            self.mongo_client = pymongo.MongoClient(MONGO_DB_URL)
+            self.mongo_client = pymongo.MongoClient(MONGO_DB_URL, tlsCAFile=certifi.where())
             collection =  self.mongo_client[database_name][collection_name]
 
             # Convert MongoDB collection to DataFrame
