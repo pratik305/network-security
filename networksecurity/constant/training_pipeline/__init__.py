@@ -28,3 +28,20 @@ DATA_VALIDATION_DRIFT_REPORT_FILE_NAME = "report.yaml"
 
 # Schema file path
 SCHEMA_FILE_PATH = os.path.join("data_schema", "schema.yaml")
+
+# Data Transformation constants
+DATA_TRANSFORMATION_DIR_NAME = "data_transformation"
+DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR = "transformed"
+DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR = "transformed_object"
+DATA_TRANSFORMATION_TRAIN_FILE_PATH = "train.npy"
+DATA_TRANSFORMATION_TEST_FILE_PATH = "test.npy"
+
+PREPROCESSING_OBJECT_FILE_NAME = "preprocessing.pkl"
+
+# KNN Imputer parameters — used to handle missing values
+DATA_TRANSFORMATION_IMPUTER_PARAMS = {
+    "missing_values": np.nan,
+    "n_neighbors": 3,
+    "weights": "uniform",
+}
+
