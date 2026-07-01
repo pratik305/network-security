@@ -45,3 +45,15 @@ DATA_TRANSFORMATION_IMPUTER_PARAMS = {
     "weights": "uniform",
 }
 
+# Model Trainer constants
+MODEL_TRAINER_DIR_NAME = "model_trainer"
+MODEL_TRAINER_TRAINED_MODEL_DIR = "trained_model"
+MODEL_TRAINER_TRAINED_MODEL_NAME = "model.pkl"
+MODEL_TRAINER_EXPECTED_SCORE = 0.6
+MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD = 0.05
+
+# Saved model constants
+SAVED_MODEL_DIR = os.path.join("saved_models")
+MODEL_FILE_NAME = "model.pkl"
+
+
