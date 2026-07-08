@@ -2,3 +2,7 @@ venv/
 .env
 Artifacts/
 logs/
+__pycache__/
+*.pyc
+mlflow.db
+docs/

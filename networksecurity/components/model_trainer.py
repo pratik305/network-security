@@ -1,6 +1,5 @@
 import sys
 import os
-import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import (
@@ -8,7 +7,7 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
     AdaBoostClassifier
 )
-from sklearn.neighbors import KNeighborsClassifier
+import mlflow
 
 from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
@@ -124,6 +123,10 @@ class ModelTrainer:
             # --- Also save to saved_models/ for later use ---
             save_object("saved_models/model.pkl", obj=best_model)
 
+            # --- Track metrics with MLflow ---
+            self.track_mlflow(classification_train_metric)
+            self.track_mlflow(classification_test_metric)
+
             # --- Build artifact ---
             model_trainer_artifact = ModelTrainerArtifact(
                 trained_model_file_path=self.model_trainer_config.trained_model_file_path,
@@ -158,3 +161,18 @@ class ModelTrainer:
 
         except Exception as e:
             raise NetworkSecurityException(e, sys)
+        
+
+    def track_mlflow(self, classification_metric: ClassificationMetricArtifact):
+        """Log model and metrics to MLflow"""
+        mlflow.set_tracking_uri("sqlite:///mlflow.db")
+        with mlflow.start_run():
+            # Extract metrics
+            f1_score        = classification_metric.f1_score
+            precision_score = classification_metric.precision_score
+            recall_score    = classification_metric.recall_score
+
+            # Log metrics
+            mlflow.log_metric("f1_score",        f1_score)
+            mlflow.log_metric("precision_score", precision_score)
+            mlflow.log_metric("recall_score",    recall_score)
