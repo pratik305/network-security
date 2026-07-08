@@ -52,10 +52,10 @@ class DataIngestionConfig:
         self.database_name = training_pipeline.DATA_INGESTION_DATABASE_NAME
 
 class DataValidationConfig:
-    def __init__(self, training_pipelineconfig: TrainingPipelineConfig):
+    def __init__(self, training_pipeline_config: TrainingPipelineConfig):
         # Root: Artifacts/timestamp/data_validation
         self.data_validation_dir = os.path.join(
-            training_pipelineconfig.artifact_dir,
+            training_pipeline_config.artifact_dir,
             training_pipeline.DATA_VALIDATION_DIR_NAME
         )
 
