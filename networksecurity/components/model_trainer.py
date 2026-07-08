@@ -26,6 +26,11 @@ from networksecurity.utils.main_utils.utils import (
 from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
 from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 
+import dagshub
+
+
+dagshub.init(repo_owner='pratikjivanjadhav77', repo_name='network-security', mlflow=True)
+
 
 class ModelTrainer:
     def __init__(self,
@@ -165,7 +170,6 @@ class ModelTrainer:
 
     def track_mlflow(self, classification_metric: ClassificationMetricArtifact):
         """Log model and metrics to MLflow"""
-        mlflow.set_tracking_uri("sqlite:///mlflow.db")
         with mlflow.start_run():
             # Extract metrics
             f1_score        = classification_metric.f1_score

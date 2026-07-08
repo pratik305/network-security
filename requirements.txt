@@ -10,5 +10,6 @@ dill
 scipy
 scikit-learn
 mlflow
+dagshub
 
 ##-e .    # This line indicates that the current directory should be installed as a package in editable mode.
