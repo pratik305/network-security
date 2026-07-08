@@ -8,3 +8,4 @@ mlflow.db
 docs/
 mlruns/
 saved_models/
+final_model/

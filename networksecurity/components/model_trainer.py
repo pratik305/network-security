@@ -128,6 +128,9 @@ class ModelTrainer:
             # --- Also save to saved_models/ for later use ---
             save_object("saved_models/model.pkl", obj=best_model)
 
+            # --- Save best model to final_model/ for deployment ---
+            save_object("final_model/model.pkl", obj=best_model)
+
             # --- Track metrics with MLflow ---
             self.track_mlflow(classification_train_metric)
             self.track_mlflow(classification_test_metric)

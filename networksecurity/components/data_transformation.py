@@ -94,6 +94,9 @@ class DataTransformation:
                 preprocessor_object
             )
 
+            # Also save preprocessor to final_model/ for deployment
+            save_object("final_model/preprocessing.pkl", obj=preprocessor_object)
+
             # Step 7: Prepare and return artifact
             data_transformation_artifact = DataTransformationArtifact(
                 transformed_object_file_path=self.data_transformation_config.transformed_object_file_path,
