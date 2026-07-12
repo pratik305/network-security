@@ -56,4 +56,7 @@ MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD = 0.05
 SAVED_MODEL_DIR = os.path.join("saved_models")
 MODEL_FILE_NAME = "model.pkl"
 
+# AWS S3 constants
+TRAINING_BUCKET_NAME = "network-security-293790315190-us-east-1-an"
+
 

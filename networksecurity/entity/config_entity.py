@@ -8,12 +8,10 @@ class TrainingPipelineConfig:
         self.pipeline_name = pipeline_name
         self.artifact_name = training_pipeline.ARTIFACT_DIR
         self.timestamp = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
+        self.model_dir    = os.path.join("final_model")
 
         # Root artifact directory: Artifacts/timestamp
-        self.artifact_dir = os.path.join(
-            self.artifact_name,
-            self.timestamp
-        )
+        self.artifact_dir = os.path.join(self.artifact_name, self.timestamp)
 
 
 class DataIngestionConfig:
